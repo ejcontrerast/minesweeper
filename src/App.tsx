@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NumberDisplay from './components/NumberDisplay';
 import Board from './components/Board';
 import GameControls from './components/GameControls';
 
@@ -12,10 +13,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-4">Minesweeper</h1>
-      <GameControls onRestart={restartGame} gameStatus={gameStatus} />
-      <Board />
+    <div className="bg-[#c2c2c2] border-4 border-t-white border-b-[#999] border-l-white border-r-[#999]">
+      <div className=''>Header
+        <NumberDisplay value={0} />
+        <NumberDisplay value={23} />
+      </div>
+      <div className=''>Body</div>
     </div>
   );
 };

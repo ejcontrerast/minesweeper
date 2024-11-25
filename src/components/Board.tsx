@@ -26,7 +26,10 @@ const Board: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="grid grid-cols-8 gap-1 p-4 bg-gray-800 rounded-lg shadow-lg"
+      className="
+      mt-4 border-4 border-r-white border-l-[#7b7b7b] border-b-white border-t-[#7b7b7b]
+      grid grid-rows-9 grid-cols-9
+      gap-1 p-4 bg-gray-800 rounded-lg shadow-lg"
     >
       {grid.map((row, rowIndex) =>
         row.map((cell, colIndex) => (
