@@ -1,6 +1,11 @@
 import React from 'react';
+const generateCells = () => {
+  
+}
+
 
 const Board: React.FC = () => {
+
 
   return (
     <div
