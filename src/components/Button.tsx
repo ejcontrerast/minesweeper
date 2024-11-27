@@ -36,6 +36,7 @@ const Button: React.FC<ButtonProps> = ({row, col, state, value}) => {
   return (
     <div
       className={`
+      flex justify-center items-center  
       w-7 h-7 border-4 bg-[#c0c0c0] 
      ${state === CellState.Visible 
         ? 'border-2 border-[#7b7b7b] ' 
