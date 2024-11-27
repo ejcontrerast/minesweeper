@@ -8,8 +8,12 @@ const [cells, setCells] = React.useState(generateCells());
 
 const renderCells = (): React.ReactNode => {
   return cells.map((row, rowIndex) =>
-    row.map((cell, collIndex) => <Button key={`${rowIndex}-${collIndex}`} />)
+    row.map((cell, collIndex) => (
+    <Button key={`${rowIndex}-${collIndex}`} state={cell.state} value={cell.value} row={rowIndex} col={collIndex} />
+  ))
   );
+
+  console.log(cells);
 }
   return (
     <div
