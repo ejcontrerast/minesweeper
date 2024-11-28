@@ -1,5 +1,5 @@
 import React from "react";
-
+import { face } from "./utils";
 
 const Face: React.FC = () => {
     return (
@@ -8,7 +8,7 @@ const Face: React.FC = () => {
              border-l-white border-t-white border-r-[#7b7b7b] border-b-[#7b7b7b] 
              active:border-t-[#7b7b7b] active:border-b-white active:border-l-[#7b7b7b] active:border-r-white
              w-12 h-12 flex items-center justify-center cursor-pointer">
-                <span role="img" aria-label="Face">😃</span>
+                <span role="img" aria-label="Face">{face.smile}</span>
             </div>
         </main>
     );

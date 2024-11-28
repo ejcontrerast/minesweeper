@@ -1,10 +1,28 @@
-import React from 'react';
+import React, {useEffect,useState} from 'react';
 import { generateCells } from './cellsGenerator';
 import Button from './Button';
+import { face } from './utils';
 
 
 const Board: React.FC = () => {
 const [cells, setCells] = React.useState(generateCells());
+const [faces, setFace] = React.useState(face.smile);
+
+useEffect(() => {
+  const handleMouseDown = (): void => {
+    setFace(face.oh);
+  };
+  const handleMouseUp = (): void => {
+    setFace(face.smile);
+  };
+  window.addEventListener('mousedown', handleMouseDown);
+  window.addEventListener('mouseup', handleMouseUp);
+  return () => {
+    window.removeEventListener('mousedown', handleMouseDown);
+    window.removeEventListener('mouseup', handleMouseUp);
+  };
+}, []);
+
 
 const renderCells = (): React.ReactNode => {
   return cells.map((row, rowIndex) =>
