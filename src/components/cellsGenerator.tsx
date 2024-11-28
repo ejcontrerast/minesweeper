@@ -9,7 +9,7 @@ export const generateCells = (): Cell[][] =>{
     for (let col = 0; col < MAX_COLS; col++) {
       cells[row].push({ 
         value: CellValue.None,
-        state: CellState.Visible, //all cells are open at the beginning
+        state: CellState.Open, //all cells are open at the beginning
         })
     }
   }
@@ -62,6 +62,7 @@ export const generateCells = (): Cell[][] =>{
         if (cell && cell.value === CellValue.Bomb) {
           numberOfBombs++;
         }
+
       });
       if (numberOfBombs > 0) {
         cells[rowIndex][colIndex] = {

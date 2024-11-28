@@ -7,7 +7,7 @@ const Game: React.FC = () => {
   const [cells, setCells] = useState();
 
   return (
-    <div className=" p-4
+    <div className=" p-4 w-fit h-fit
     flex flex-col items-center justify-center
     bg-[#c2c2c2] border-4 border-t-white border-b-[#999] border-l-white border-r-[#999]">
       <div>

@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.value-1 {
+  color: blue;
+}
+.value-2 {
+  color: green;
+}
+.value-3 {
+  color: red;
+}
+.value-4 {
+  color: purple;
+}
+.value-5 {
+  color: maroon;
+}
+.value-6 {
+  color: turquoise;
+}
+.value-7 {
+  color: black;
+}
+.value-8 {
+  color: gray;
+}
+
+.cellBtn {
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    height: 32px;
+    width: 32px;
+    border-width: 4px;
+    background-color: #c0c0c0;
+    border-left-color: white;
+    border-right-color: #7b7b7b;
+    border-top-color: white;
+    border-bottom-color: #7b7b7b;
+}
+
+.cellBtn:active {
+    border-top-color: #7b7b7b;
+    border-bottom-color: white;
+    border-left-color: #7b7b7b;
+    border-right-color: white;
+}
+
+.cellBtnVisible {
+    cursor: pointer;
+    font-weight: 500;
+    border: 1px solid #7b7b7b;
+    background-color: #c0c0c0;
+}
