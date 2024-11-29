@@ -26,35 +26,16 @@ const renderCells = (): React.ReactNode => {
     
     let newCells = cells.slice();
     const currentCell = cells[rowParam][colParam];
+
     if (currentCell.state === CellState.Visible || currentCell.state === CellState.Flagged) {
       return;
     }
+
     if (currentCell.value === CellValue.Bomb) {
-      setLive(false);
-      const newCells = cells.slice();
-      newCells.forEach(row => row.forEach(cell => {
-        if (cell.value === CellValue.Bomb) {
-          cell.state = CellState.Visible;
-        }
-      }));
-      setCells(newCells);
+      setLive(true);
     } else if (currentCell.value === CellValue.None) {
       newCells = openMultipleCells(newCells, rowParam, colParam);
-
-      
-      const checkNeighbours = (row: number, col: number) => {
-        if (row < 0 || row >= cells.length || col < 0 || col >= cells[0].length) {
-          return;
-        }
-        const currentCell = newCells[row][col];
-        if (currentCell.state === CellState.Open) {
-          newCells[row][col].state = CellState.Visible;
-          if (currentCell.value === CellValue.None) {
-            checkNeighbours(row, col);
-          }
-        }
-      }
-      checkNeighbours(rowParam, colParam);
+      setCells(newCells);
     } else {
       newCells[rowParam][colParam].state = CellState.Visible;
       setCells(newCells);
