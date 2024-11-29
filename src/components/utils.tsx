@@ -1,4 +1,4 @@
-
+import React from 'react';
 
 export const MAX_ROWS = 9;
 export const MAX_COLS = 9;
@@ -29,4 +29,12 @@ export enum Face {
   oh = '😲',
   lost = '😭',
   win = '😎'
+}
+export const [time, setTime] = React.useState<number>(0);
+
+export function openMultipleCells(cells: Cell[][], rowParam: number, colParam: number): Cell[][] {
+  throw new Error('Function not implemented.');
+}
+export function showAllBombs(): Cell[][] {
+  throw new Error('Function not implemented.');
 }
