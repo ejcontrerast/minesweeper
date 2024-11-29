@@ -9,7 +9,8 @@ const NumberDisplay: React.FC<NumberDisplayProps> = ({value}) => {
     <div className="flex justify-center items-center">
       <div className="w-20 h-12 text-4xl
       text-center text-[#ff0701] bg-black m-1">
-        {value.toString().padStart(3,"0")}
+        {value < 0 ? `-${Math.abs(value).toString().padStart(2,"0")}` 
+        : value.toString().padStart(3,"0")}
       </div>
     </div>
   )
