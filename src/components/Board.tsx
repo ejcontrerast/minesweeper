@@ -40,6 +40,7 @@ const renderCells = (): React.ReactNode => {
       setBombCounter((prev) => prev - 1);
     } else if (currentCell.state === CellState.Flagged) {
       currentCell.state = CellState.Open;
+      setBombCounter((prev) => prev + 1);
     }
     setCells(currentCells);
   }
