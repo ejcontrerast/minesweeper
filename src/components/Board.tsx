@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import Button from './Button';
 import { Cell } from './utils';
 import { CellState, CellValue } from './utils';
+import { openMultipleCells } from './utils';
 
 interface BoardProps {
   state: CellState;
@@ -22,7 +23,44 @@ const renderCells = (): React.ReactNode => {
     if (!live) {
       setLive(true);
     }
-    console.log("LIVE", live);
+    
+    let newCells = cells.slice();
+    const currentCell = cells[rowParam][colParam];
+    if (currentCell.state === CellState.Visible || currentCell.state === CellState.Flagged) {
+      return;
+    }
+    if (currentCell.value === CellValue.Bomb) {
+      setLive(false);
+      const newCells = cells.slice();
+      newCells.forEach(row => row.forEach(cell => {
+        if (cell.value === CellValue.Bomb) {
+          cell.state = CellState.Visible;
+        }
+      }));
+      setCells(newCells);
+    } else if (currentCell.value === CellValue.None) {
+      newCells = openMultipleCells(newCells, rowParam, colParam);
+
+      
+      const checkNeighbours = (row: number, col: number) => {
+        if (row < 0 || row >= cells.length || col < 0 || col >= cells[0].length) {
+          return;
+        }
+        const currentCell = newCells[row][col];
+        if (currentCell.state === CellState.Open) {
+          newCells[row][col].state = CellState.Visible;
+          if (currentCell.value === CellValue.None) {
+            checkNeighbours(row, col);
+          }
+        }
+      }
+      checkNeighbours(rowParam, colParam);
+    } else {
+      newCells[rowParam][colParam].state = CellState.Visible;
+      setCells(newCells);
+    }
+
+
   }
 
   const handleCellContext = (rowParam: number, colParam: number) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
