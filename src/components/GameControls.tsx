@@ -7,6 +7,7 @@ type GameControlsProps = {
 };
 
 const GameControls: React.FC<GameControlsProps> = ({ onRestart, gameStatus }) => {
+  
   const setDifficulty = (level: string) => {
     console.log(`Difficulty set to: ${level}`);
   };

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Face as FaceEnum } from './utils';
 import { generateCells } from './cellsGenerator';
 import { Cell } from './utils';
-import { use } from "framer-motion/client";
 
 interface FaceProps {
   live: boolean;
@@ -15,9 +14,11 @@ interface FaceProps {
   setLost: React.Dispatch<React.SetStateAction<boolean>>;
   won: boolean;
   setWon: React.Dispatch<React.SetStateAction<boolean>>;
+  bombCounter: number;
+  setBombCounter: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Face: React.FC<FaceProps> = ({live, setLive, time, setTime, cells, setCells, lost, setLost, won, setWon}) => {
+const Face: React.FC<FaceProps> = ({live, setLive, time, setTime, cells, setCells, lost, setLost, won, setWon, bombCounter, setBombCounter}) => {
     const [face, setFace] = React.useState<FaceEnum>(FaceEnum.Smile);
 
     useEffect(() => {
@@ -44,6 +45,7 @@ const Face: React.FC<FaceProps> = ({live, setLive, time, setTime, cells, setCell
           setCells(generateCells());
           setLost(false);
           setWon(false);
+          setBombCounter(10);
       }
 
     useEffect(() => {

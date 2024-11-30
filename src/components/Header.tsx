@@ -45,6 +45,7 @@ const Header: React.FC<HeaderProps> = ({live, setLive, cells, setCells, bombCoun
       cells={cells} setCells={setCells} 
       lost={lost} setLost={setLost}
       won={won} setWon={setWon}
+      bombCounter={bombCounter} setBombCounter={setBombCounter}
       />
       <NumberDisplay value={time} />
     </div>
