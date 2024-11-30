@@ -1,3 +1,57 @@
+/* AND IDEA OF HOW TO SETP UP THE GAME COMPONENT
+for example, we can set up the Game component like this:
+
+export enum GameLevel {
+  BEGINNER = 'beginner',
+  INTERMEDIATE = 'intermediate',
+  EXPERT = 'expert'
+}
+
+export const GAME_CONFIGS = {
+  [GameLevel.BEGINNER]: {
+    ROWS: 9,
+    COLS: 9,
+    BOMBS: 10,
+    LIVE: false,
+    TIME: 0
+  },
+  [GameLevel.INTERMEDIATE]: {
+    ROWS: 16,
+    COLS: 16,
+    BOMBS: 40,
+    LIVE: false,
+    TIME: 0
+  },
+  [GameLevel.EXPERT]: {
+    ROWS: 16,
+    COLS: 30,
+    BOMBS: 99,
+    LIVE: false,
+    TIME: 0
+  }
+} as const;
+
+// Game.tsx implementation
+const Game: React.FC = () => {
+  const [level, setLevel] = useState<GameLevel>(GameLevel.BEGINNER);
+  const [bombCounter, setBombCounter] = useState<number>(GAME_CONFIGS[level].BOMBS);
+  const [live, setLive] = useState<boolean>(GAME_CONFIGS[level].LIVE);
+  const [cells, setCells] = useState(generateCells(
+    GAME_CONFIGS[level].ROWS, 
+    GAME_CONFIGS[level].COLS, 
+    GAME_CONFIGS[level].BOMBS
+  ));
+
+  const resetGame = (newLevel?: GameLevel) => {
+    const config = GAME_CONFIGS[newLevel || level];
+    setBombCounter(config.BOMBS);
+    setLive(config.LIVE);
+    setCells(generateCells(config.ROWS, config.COLS, config.BOMBS));
+    if (newLevel) setLevel(newLevel);
+  };
+
+*/
+
 export const MAX_ROWS = 9;
 export const MAX_COLS = 9;
 export const NUMBER_OF_BOMBS = 10;

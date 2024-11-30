@@ -22,22 +22,28 @@ const Face: React.FC<FaceProps> = ({live, setLive, time, setTime, cells, setCell
     const [face, setFace] = React.useState<FaceEnum>(FaceEnum.Smile);
 
     useEffect(() => {
-        const handleMousedown = (): void => {
+      const handleMousedown = (e: MouseEvent): void => {
+        const boardElement = document.querySelector('.board-container');
+        if (boardElement?.contains(e.target as Node)) {
           setFace(FaceEnum.Oh);
         }
-      
-        const handleMouseup = (): void => {
+      }
+    
+      const handleMouseup = (e: MouseEvent): void => {
+        const boardElement = document.querySelector('.board-container');
+        if (boardElement?.contains(e.target as Node)) {
           setFace(FaceEnum.Smile);
         }
+      }
+    
+      window.addEventListener('mousedown', handleMousedown);
+      window.addEventListener('mouseup', handleMouseup);
       
-        window.addEventListener('mousedown', handleMousedown);
-        window.addEventListener('mouseup', handleMouseup);
-        
-        return () => {
-          window.removeEventListener('mousedown', handleMousedown);
-          window.removeEventListener('mouseup', handleMouseup);
-        }
-      }, []);
+      return () => {
+        window.removeEventListener('mousedown', handleMousedown);
+        window.removeEventListener('mouseup', handleMouseup);
+      }
+    }, []);
 
       const handleFaceClick = (): void => {
           setLive(false);
