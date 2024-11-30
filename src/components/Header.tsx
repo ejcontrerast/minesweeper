@@ -11,9 +11,13 @@ interface HeaderProps {
   setCells: React.Dispatch<React.SetStateAction<Cell[][]>>;
   bombCounter: number;
   setBombCounter: React.Dispatch<React.SetStateAction<number>>;
+  lost: boolean;
+  setLost: React.Dispatch<React.SetStateAction<boolean>>;
+  won: boolean;
+  setWon: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Header: React.FC<HeaderProps> = ({live, setLive, cells, setCells, bombCounter, setBombCounter}) => {
+const Header: React.FC<HeaderProps> = ({live, setLive, cells, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon}) => {
   const [time, setTime] = React.useState<number>(0);
   
   useEffect(() => {
@@ -35,7 +39,13 @@ const Header: React.FC<HeaderProps> = ({live, setLive, cells, setCells, bombCoun
     "bg-[#c0c0c0] py-2 px-3 border-4 border-r-white border-b-white border-l-[#7b7b7b] border-t-[#7b7b7b] flex items-center justify-between"
     >
       <NumberDisplay value={bombCounter} />
-      <Face live={live} setLive={setLive} time={time} setTime={setTime} cells={cells} setCells={setCells}/>
+      <Face 
+      live={live} setLive={setLive} 
+      time={time} setTime={setTime} 
+      cells={cells} setCells={setCells} 
+      lost={lost} setLost={setLost}
+      won={won} setWon={setWon}
+      />
       <NumberDisplay value={time} />
     </div>
   );

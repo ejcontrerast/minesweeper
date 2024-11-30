@@ -21,6 +21,7 @@ export enum CellState {
 export type Cell = {
   value: CellValue;
   state: CellState;
+  red?: boolean
 };
 export enum Face {
   Smile = "😀",
@@ -64,7 +65,6 @@ const grabAllAdjacentCells = (cells: Cell[][], rowParam: number, colParam: numbe
 
 export const openMultipleCells = (cells: Cell[][], rowParam: number, colParam: number): Cell[][] => {
   let newCells = cells.slice();
-  
   
   newCells[rowParam][colParam].state = CellState.Visible;
   

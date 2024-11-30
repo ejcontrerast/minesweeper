@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Button from './Button';
 import { Cell } from './utils';
 import { CellState, CellValue } from './utils';
 import { openMultipleCells } from './utils';
+import { generateCells } from './cellsGenerator';
 
 interface BoardProps {
   state: CellState;
@@ -13,36 +14,94 @@ interface BoardProps {
   setCells: React.Dispatch<React.SetStateAction<Cell[][]>>;
   bombCounter: number;
   setBombCounter: React.Dispatch<React.SetStateAction<number>>;
+  lost: boolean;
+  setLost: React.Dispatch<React.SetStateAction<boolean>>;
+  won: boolean;
+  setWon: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Board: React.FC<BoardProps> = ({live, setLive, cells, setCells, bombCounter, setBombCounter}) => {
+const Board: React.FC<BoardProps> = ({live, setLive, cells, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon}) => {
 
 const renderCells = (): React.ReactNode => {
 
+  const showAllBombs = (): Cell[][] => {
+    const newCells = cells.slice();
+    return newCells.map(row => row.map(cell => {
+      if (cell.value === CellValue.Bomb) {
+        return {
+          ...cell,
+          state: CellState.Visible
+        };
+      }
+      return cell;
+    }));
+  }
+  
   const handleCellClick = (rowParam: number, colParam: number ) => (): void => {
+    let newCells = cells.slice();
+    
     if (!live) {
-      setLive(true);
+          let isABomb = cells[rowParam][colParam].value === CellValue.Bomb;
+          while (isABomb) {
+          newCells = generateCells();
+          if (newCells[rowParam][colParam].value !== CellValue.Bomb) {
+            isABomb = false;
+            break;
+          }
+        }
+        setLive(true);
     }
     
-    let newCells = cells.slice();
-    const currentCell = cells[rowParam][colParam];
-
+    
+    const currentCell = newCells[rowParam][colParam];
     if (currentCell.state === CellState.Visible || currentCell.state === CellState.Flagged) {
       return;
     }
 
     if (currentCell.value === CellValue.Bomb) {
-      setLive(true);
+      setLost(true);
+      newCells[rowParam][colParam].red = true;
+      newCells = showAllBombs();
+      setCells(newCells);
+      setLive(false);
+      return;
     } else if (currentCell.value === CellValue.None) {
       newCells = openMultipleCells(newCells, rowParam, colParam);
       setCells(newCells);
     } else {
       newCells[rowParam][colParam].state = CellState.Visible;
-      setCells(newCells);
+    }
+
+    let safeOpenCellsExists = false;
+
+    for (let row = 0; row < cells.length; row++) {
+      for (let col = 0; col < cells[row].length; col++) {
+        const currentCell = newCells[row][col];
+        if (currentCell.value !== CellValue.Bomb && currentCell.state === CellState.Open) {
+          safeOpenCellsExists = true;
+        }
+      }
     }
 
 
+    if (!safeOpenCellsExists) {
+      newCells = newCells.map(row => row.map(cell => {
+        if (cell.value === CellValue.Bomb) {
+          return {
+            ...cell,
+            state: CellState.Flagged
+          };
+        }
+        return cell;
+      }));
+      setWon(true);
+      setLive(false);
+    }
+
+    setCells(newCells);
   }
+
+
 
   const handleCellContext = (rowParam: number, colParam: number) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
     e.preventDefault();
@@ -72,8 +131,9 @@ const renderCells = (): React.ReactNode => {
       value={cell.value} 
       row={rowIndex} 
       col={collIndex}
-      onClick={handleCellClick} 
+      onClick={handleCellClick}
       onContext={handleCellContext}
+      red={cell.red}
     />
   ))
   );
@@ -91,5 +151,6 @@ const renderCells = (): React.ReactNode => {
 };
 
 export default Board;
+
 
 
