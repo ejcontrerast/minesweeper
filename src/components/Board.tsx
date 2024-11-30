@@ -4,6 +4,7 @@ import { Cell } from './utils';
 import { CellState, CellValue } from './utils';
 import { openMultipleCells } from './utils';
 import { generateCells } from './cellsGenerator';
+import { motion } from 'framer-motion';
 
 interface BoardProps {
   state: CellState;
@@ -38,6 +39,11 @@ const renderCells = (): React.ReactNode => {
   }
   
   const handleCellClick = (rowParam: number, colParam: number ) => (): void => {
+    if (lost) {
+      return;
+    } 
+    
+    
     let newCells = cells.slice();
     
     if (!live) {
@@ -140,14 +146,20 @@ const renderCells = (): React.ReactNode => {
 
 }
   return (
-    <div
-      className="
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+
+      className={`
       board-container
       mt-4 border-4 border-r-white border-l-[#7b7b7b] border-b-white border-t-[#7b7b7b]
       grid grid-rows-9 grid-cols-9
-      shadow-lg"
+      shadow-lg
+      ${lost ? 'pointer-events-none opacity-20' : ''} 
+      `}
     >{renderCells()}
-    </div>
+    </motion.div>
   );
 };
 

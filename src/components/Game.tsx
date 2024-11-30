@@ -12,6 +12,7 @@ const Game: React.FC = () => {
   const [lost, setLost] = React.useState<boolean>(false);
   const [won, setWon] = React.useState<boolean>(false);
 
+  // Next the game controls will be added
   return (
     <div className=" p-4 w-fit h-fit
     flex flex-col items-center justify-center

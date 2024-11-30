@@ -23,6 +23,7 @@ const Face: React.FC<FaceProps> = ({live, setLive, time, setTime, cells, setCell
 
     useEffect(() => {
       const handleMousedown = (e: MouseEvent): void => {
+        
         const boardElement = document.querySelector('.board-container');
         if (boardElement?.contains(e.target as Node)) {
           setFace(FaceEnum.Oh);
