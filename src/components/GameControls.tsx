@@ -37,7 +37,11 @@ const GameControls: React.FC<GameControlsProps> = ({ live, setLive, cells, setCe
       {Object.values(GameLevel).map((levelChoosed) => (
         <button
           key={levelChoosed}
-          className="px-2 py-1 bg-gray-600 text-white text-sm rounded"
+          className={`px-1  py-1.5 text-2xl
+          bg-transparent
+          text-gray-700 font-medium hover:from-gray-300 hover:to-gray-400 
+          active:translate-y-px ${level === levelChoosed ? ' text-red-500' : ''}`}
+          style={{ fontFamily: 'VT323, monospace' }}
           onClick={() => setDifficulty(levelChoosed)}
         >
           {levelChoosed}

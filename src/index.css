@@ -59,3 +59,10 @@
 .red {
   background-color: red;
 }
+
+
+.vt323-regular {
+  font-family: "VT323", serif;
+  font-weight: 400;
+  font-style: normal;
+}
