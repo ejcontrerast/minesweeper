@@ -154,14 +154,19 @@ const renderCells = (): React.ReactNode => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
-      className={`
-      board-container
+      className={`g-0 m-0
+      board-container w-fit h-fit
       mt-4 border-4 border-r-white border-l-[#7b7b7b] border-b-white border-t-[#7b7b7b]
-      grid grid-rows-9 grid-cols-9
-      shadow-lg
-      ${lost ? 'pointer-events-none opacity-20' : ''} 
+      grid
+      ${lost ? 'pointer-events-none opacity-95' : ''} 
       `}
-    >{renderCells()}
+      style={{
+        display: 'grid',
+        gridTemplateRows: `repeat(${rows}, 32px)`,     // Fixed size
+        gridTemplateColumns: `repeat(${cols}, 32px)`,   // Fixed size
+        width: 'fit-content'
+      }}
+    >{renderCells()} 
     </motion.div>
   );
 };

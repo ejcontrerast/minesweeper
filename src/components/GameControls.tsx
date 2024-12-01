@@ -23,6 +23,7 @@ type GameControlsProps = {
 const GameControls: React.FC<GameControlsProps> = ({ live, setLive, cells, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon, level, setLevel, time, setTime }) => {
   const setDifficulty = (levelChoosed: GameLevel) => {
     const config = GAME_CONFIGS[levelChoosed];
+    setLevel(levelChoosed);
     setLive(false);
     setTime(0)
     setCells(generateCells(config.ROWS, config.COLS, config.BOMBS));

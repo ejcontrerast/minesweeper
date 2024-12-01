@@ -54,6 +54,7 @@ const Face: React.FC<FaceProps> = ({live, setLive, time, setTime, cells, setCell
 
       const handleFaceClick = (): void => {
           const config = GAME_CONFIGS[level];
+          console.log(level);
           setLive(false);
           setTime(0)
           setCells(generateCells(rows, cols, bombs));
