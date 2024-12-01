@@ -1,5 +1,6 @@
 import React from "react";
 import { CellValue, CellState } from "./utils";
+import minesvg from "../assets/mine.svg";
 
 
 
@@ -19,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({row, col, onContext, onClick, state, val
             if (value === CellValue.Bomb) {
             return (
                 <span role="img" aria-label="bomb" className="flex items-center justify-center w-full h-full">
-                💣
+                <img src={minesvg} alt="bomb" className="w-6 h-6" />
                 </span>
             );
             }
