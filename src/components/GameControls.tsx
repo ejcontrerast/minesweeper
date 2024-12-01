@@ -1,63 +1,48 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { GameLevel, GAME_CONFIGS } from "./utils";
+import { Cell } from "./utils";
+import { generateCells } from './cellsGenerator';
 
 type GameControlsProps = {
-  onRestart: () => void;
-  gameStatus: 'playing' | 'won' | 'lost'; // Restrict to specific states
+  level: GameLevel;
+  setLevel: React.Dispatch<React.SetStateAction<GameLevel>>;
+  live: boolean;
+  setLive: React.Dispatch<React.SetStateAction<boolean>>;
+  cells: Cell[][];
+  setCells: React.Dispatch<React.SetStateAction<Cell[][]>>;
+  bombCounter: number;
+  setBombCounter: React.Dispatch<React.SetStateAction<number>>;
+  lost: boolean;
+  setLost: React.Dispatch<React.SetStateAction<boolean>>;
+  won: boolean;
+  setWon: React.Dispatch<React.SetStateAction<boolean>>;
+  time: number;
+  setTime: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const GameControls: React.FC<GameControlsProps> = ({ onRestart, gameStatus }) => {
-  
-  const setDifficulty = (level: string) => {
-    console.log(`Difficulty set to: ${level}`);
-  };
-  const getStatusMessage = () => {
-    switch (gameStatus) {
-      case 'won':
-        return '🎉 You Won!';
-      case 'lost':
-        return '💥 Game Over!';
-      default:
-        return '⏳ Playing...';
-    }
+const GameControls: React.FC<GameControlsProps> = ({ live, setLive, cells, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon, level, setLevel, time, setTime }) => {
+  const setDifficulty = (levelChoosed: GameLevel) => {
+    const config = GAME_CONFIGS[levelChoosed];
+    setLive(false);
+    setTime(0)
+    setCells(generateCells(config.ROWS, config.COLS, config.BOMBS));
+    setLost(false);
+    setWon(false);
+    setBombCounter(config.BOMBS);
   };
 
   return (
-    <motion.div
-      className="flex justify-between items-center bg-gray-700 p-4 rounded-lg shadow-md"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-    >
-      <motion.button
-        onClick={onRestart}
-        className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-        whileTap={{ scale: 0.95 }}
-      >
-        Restart
-      </motion.button>
-      <motion.span
-        className="text-lg font-semibold text-white"
-        initial={{ scale: 0.8 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-      >
-        {getStatusMessage()}
-      </motion.span>
-      <div className="flex space-x-2">
-      {['Easy', 'Medium', 'Hard'].map((level) => (
-        <motion.button
-          key={level}
-          className="px-2 py-1 bg-gray-600 text-white rounded hover:bg-gray-500"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setDifficulty(level)}
-            >
-              {level}
-            </motion.button>
-          ))}
-        </div>
-    </motion.div>
+    <div className="flex gap-2 mb-4 items-center justify-around">
+      {Object.values(GameLevel).map((levelChoosed) => (
+        <button
+          key={levelChoosed}
+          className="px-2 py-1 bg-gray-600 text-white text-sm rounded"
+          onClick={() => setDifficulty(levelChoosed)}
+        >
+          {levelChoosed}
+        </button>
+      ))}
+    </div>
   );
 };
 

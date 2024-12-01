@@ -19,9 +19,12 @@ interface BoardProps {
   setLost: React.Dispatch<React.SetStateAction<boolean>>;
   won: boolean;
   setWon: React.Dispatch<React.SetStateAction<boolean>>;
+  rows: number;
+  cols: number;
+  bombs: number;
 }
 
-const Board: React.FC<BoardProps> = ({live, setLive, cells, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon}) => {
+const Board: React.FC<BoardProps> = ({live, setLive, cells, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon, rows, cols, bombs}) => {
 
 const renderCells = (): React.ReactNode => {
 
@@ -49,7 +52,8 @@ const renderCells = (): React.ReactNode => {
     if (!live) {
           let isABomb = cells[rowParam][colParam].value === CellValue.Bomb;
           while (isABomb) {
-          newCells = generateCells();
+          newCells = generateCells(rows, cols, bombs);
+          console.log("this is a bomb");
           if (newCells[rowParam][colParam].value !== CellValue.Bomb) {
             isABomb = false;
             break;
@@ -149,8 +153,7 @@ const renderCells = (): React.ReactNode => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-
+      transition={{ duration: 0.2 }}
       className={`
       board-container
       mt-4 border-4 border-r-white border-l-[#7b7b7b] border-b-white border-t-[#7b7b7b]

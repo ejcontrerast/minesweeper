@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Face as FaceEnum } from './utils';
 import { generateCells } from './cellsGenerator';
 import { Cell } from './utils';
+import { GameLevel, GAME_CONFIGS } from './utils';
 
 interface FaceProps {
   live: boolean;
@@ -16,9 +17,14 @@ interface FaceProps {
   setWon: React.Dispatch<React.SetStateAction<boolean>>;
   bombCounter: number;
   setBombCounter: React.Dispatch<React.SetStateAction<number>>;
+  rows: number;
+  cols: number;
+  bombs: number;
+  level: GameLevel;
+  setLevel: React.Dispatch<React.SetStateAction<GameLevel>>;
 }
 
-const Face: React.FC<FaceProps> = ({live, setLive, time, setTime, cells, setCells, lost, setLost, won, setWon, bombCounter, setBombCounter}) => {
+const Face: React.FC<FaceProps> = ({live, setLive, time, setTime, cells, setCells, lost, setLost, won, setWon, bombCounter, setBombCounter, rows, cols, bombs, level, setLevel}) => {
     const [face, setFace] = React.useState<FaceEnum>(FaceEnum.Smile);
 
     useEffect(() => {
@@ -47,12 +53,13 @@ const Face: React.FC<FaceProps> = ({live, setLive, time, setTime, cells, setCell
     }, []);
 
       const handleFaceClick = (): void => {
+          const config = GAME_CONFIGS[level];
           setLive(false);
           setTime(0)
-          setCells(generateCells());
+          setCells(generateCells(rows, cols, bombs));
           setLost(false);
           setWon(false);
-          setBombCounter(10);
+          setBombCounter(config.BOMBS);
       }
 
     useEffect(() => {

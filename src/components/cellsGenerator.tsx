@@ -1,12 +1,16 @@
-import { Cell, MAX_ROWS, MAX_COLS, CellValue, CellState, NUMBER_OF_BOMBS } from "./utils";
+import { Cell, CellValue, CellState } from "./utils";
 
 // Generate all cells
-export const generateCells = (): Cell[][] =>{
+export const generateCells = (
+  rows: number,
+  cols: number, 
+  bombs: number
+): Cell[][] =>{
   let cells: Cell[][] = [];
 
-  for (let row = 0; row < MAX_ROWS; row++) {
+  for (let row = 0; row < rows; row++) {
     cells.push([])
-    for (let col = 0; col < MAX_COLS; col++) {
+    for (let col = 0; col < rows; col++) {
       cells[row].push({ 
         value: CellValue.None,
         state: CellState.Open, //all cells are open at the beginning
@@ -15,9 +19,9 @@ export const generateCells = (): Cell[][] =>{
   }
   //randomly put 10 bombs
   let bombsPlaced = 0;
-  while (bombsPlaced < NUMBER_OF_BOMBS) {
-    const row = Math.floor(Math.random() * MAX_ROWS);
-    const col = Math.floor(Math.random() * MAX_COLS);
+  while (bombsPlaced < bombs) {
+    const row = Math.floor(Math.random() * rows);
+    const col = Math.floor(Math.random() * cols);
 
     const currentCell = cells[row][col];
     if (currentCell.value !== CellValue.Bomb) {
@@ -31,8 +35,8 @@ export const generateCells = (): Cell[][] =>{
 
 
   //Calculate the numbers for each cell
-  for (let rowIndex =0; rowIndex < MAX_ROWS; rowIndex++) {  
-    for (let colIndex=0; colIndex < MAX_COLS; colIndex++) {
+  for (let rowIndex =0; rowIndex < rows; rowIndex++) {  
+    for (let colIndex=0; colIndex < cols; colIndex++) {
       const currentCell = cells[rowIndex][colIndex];
       if (currentCell.value === CellValue.Bomb) {
         continue;
@@ -40,12 +44,12 @@ export const generateCells = (): Cell[][] =>{
       let numberOfBombs = 0;
       const topLeftBomb = rowIndex > 0 && colIndex > 0 ? cells[rowIndex - 1][colIndex - 1] : null;
       const topBomb = rowIndex > 0 ? cells[rowIndex - 1][colIndex] : null;
-      const topRightBomb = rowIndex > 0 && colIndex < MAX_COLS - 1 ? cells[rowIndex - 1][colIndex + 1] : null;
+      const topRightBomb = rowIndex > 0 && colIndex < cols - 1 ? cells[rowIndex - 1][colIndex + 1] : null;
       const leftBomb = colIndex > 0 ? cells[rowIndex][colIndex - 1] : null;
-      const rightBomb = colIndex < MAX_COLS - 1 ? cells[rowIndex][colIndex + 1] : null;
-      const bottomLeftBomb = rowIndex < MAX_ROWS - 1 && colIndex > 0 ? cells[rowIndex + 1][colIndex - 1] : null;
-      const bottomBomb = rowIndex < MAX_ROWS - 1 ? cells[rowIndex + 1][colIndex] : null;
-      const bottomRightBomb = rowIndex < MAX_ROWS - 1 && colIndex < MAX_COLS - 1 ? cells[rowIndex + 1][colIndex + 1] : null;
+      const rightBomb = colIndex < cols - 1 ? cells[rowIndex][colIndex + 1] : null;
+      const bottomLeftBomb = rowIndex < rows - 1 && colIndex > 0 ? cells[rowIndex + 1][colIndex - 1] : null;
+      const bottomBomb = rowIndex < rows - 1 ? cells[rowIndex + 1][colIndex] : null;
+      const bottomRightBomb = rowIndex < rows - 1 && colIndex < cols - 1 ? cells[rowIndex + 1][colIndex + 1] : null;
       
       const adjacentCells = [
         topLeftBomb,

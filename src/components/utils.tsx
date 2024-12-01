@@ -52,6 +52,37 @@ const Game: React.FC = () => {
 
 */
 
+export enum GameLevel {
+  BEGINNER = 'Beginner',
+  INTERMEDIATE = 'Intermediate',
+  EXPERT = 'Expert'
+}
+
+export const GAME_CONFIGS = {
+  [GameLevel.BEGINNER]: {
+    ROWS: 9,
+    COLS: 9,
+    BOMBS: 10,
+    LIVE: false,
+    TIME: 0
+  },
+  [GameLevel.INTERMEDIATE]: {
+    ROWS: 16,
+    COLS: 16,
+    BOMBS: 40,
+    LIVE: false,
+    TIME: 0
+  },
+  [GameLevel.EXPERT]: {
+    ROWS: 16,
+    COLS: 30,
+    BOMBS: 99,
+    LIVE: false,
+    TIME: 0
+  }
+} as const;
+
+
 export const MAX_ROWS = 9;
 export const MAX_COLS = 9;
 export const NUMBER_OF_BOMBS = 10;

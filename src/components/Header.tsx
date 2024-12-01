@@ -2,6 +2,7 @@ import React, {useEffect, useState } from 'react';
 import Face from './Face';
 import NumberDisplay from './NumberDisplay';
 import { Cell } from './utils';
+import { GameLevel } from './utils';
 
 
 interface HeaderProps {
@@ -15,10 +16,17 @@ interface HeaderProps {
   setLost: React.Dispatch<React.SetStateAction<boolean>>;
   won: boolean;
   setWon: React.Dispatch<React.SetStateAction<boolean>>;
+  rows: number;
+  cols: number;
+  bombs: number;
+  level: GameLevel;
+  setLevel: React.Dispatch<React.SetStateAction<GameLevel>>;
+  time: number;
+  setTime: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Header: React.FC<HeaderProps> = ({live, setLive, cells, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon}) => {
-  const [time, setTime] = React.useState<number>(0);
+const Header: React.FC<HeaderProps> = ({live, setLive, cells, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon, rows, cols, bombs, level, setLevel, time, setTime}) => {
+
   
   useEffect(() => {
     if (live && time < 999) {
@@ -46,6 +54,8 @@ const Header: React.FC<HeaderProps> = ({live, setLive, cells, setCells, bombCoun
       lost={lost} setLost={setLost}
       won={won} setWon={setWon}
       bombCounter={bombCounter} setBombCounter={setBombCounter}
+      rows={rows} cols={cols} bombs={bombs}
+      level={level} setLevel={setLevel}
       />
       <NumberDisplay value={time} />
     </div>
