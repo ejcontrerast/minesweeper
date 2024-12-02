@@ -6,21 +6,15 @@ import { generateCells } from './cellsGenerator';
 type GameControlsProps = {
   level: GameLevel;
   setLevel: React.Dispatch<React.SetStateAction<GameLevel>>;
-  live: boolean;
   setLive: React.Dispatch<React.SetStateAction<boolean>>;
-  cells: Cell[][];
   setCells: React.Dispatch<React.SetStateAction<Cell[][]>>;
-  bombCounter: number;
   setBombCounter: React.Dispatch<React.SetStateAction<number>>;
-  lost: boolean;
   setLost: React.Dispatch<React.SetStateAction<boolean>>;
-  won: boolean;
   setWon: React.Dispatch<React.SetStateAction<boolean>>;
-  time: number;
   setTime: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const GameControls: React.FC<GameControlsProps> = ({ live, setLive, cells, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon, level, setLevel, time, setTime }) => {
+const GameControls: React.FC<GameControlsProps> = ({setLive, setCells, setBombCounter, setLost, setWon, level, setLevel, setTime }) => {
   const setDifficulty = (levelChoosed: GameLevel) => {
     const config = GAME_CONFIGS[levelChoosed];
     setLevel(levelChoosed);

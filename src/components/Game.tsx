@@ -28,24 +28,24 @@ const Game: React.FC = () => {
     bg-[#c2c2c2] border-4 border-t-white border-b-[#999] border-l-white border-r-[#999]">
       <div>
       <GameControls
-      live={live} setLive={setLive} 
-      cells={cells} setCells={setCells} 
-      bombCounter={bombCounter} setBombCounter={setBombCounter} 
-      lost={lost} setLost={setLost}
-      won={won} setWon={setWon}
+      setLive={setLive} 
+      setCells={setCells} 
+      setBombCounter={setBombCounter} 
+      setLost={setLost}
+      setWon={setWon}
       level={level} setLevel={setLevel}
-      time={time} setTime={setTime}
+      setTime={setTime}
       />
       <Header 
       live={live} setLive={setLive} 
-      cells={cells} setCells={setCells} 
+      setCells={setCells} 
       bombCounter={bombCounter} setBombCounter={setBombCounter} 
       lost={lost} setLost={setLost}
       won={won} setWon={setWon}
       rows={GAME_CONFIGS[level].ROWS}
       cols={GAME_CONFIGS[level].COLS}
       bombs={GAME_CONFIGS[level].BOMBS}
-      level={level} setLevel={setLevel}
+      level={level}
       time={time} setTime={setTime}
       />
       <Board 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect } from 'react';
 import Face from './Face';
 import NumberDisplay from './NumberDisplay';
 import { Cell } from './utils';
@@ -8,7 +8,6 @@ import { GameLevel } from './utils';
 interface HeaderProps {
   live: boolean;
   setLive: React.Dispatch<React.SetStateAction<boolean>>;
-  cells: Cell[][];
   setCells: React.Dispatch<React.SetStateAction<Cell[][]>>;
   bombCounter: number;
   setBombCounter: React.Dispatch<React.SetStateAction<number>>;
@@ -20,12 +19,11 @@ interface HeaderProps {
   cols: number;
   bombs: number;
   level: GameLevel;
-  setLevel: React.Dispatch<React.SetStateAction<GameLevel>>;
   time: number;
   setTime: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Header: React.FC<HeaderProps> = ({live, setLive, cells, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon, rows, cols, bombs, level, setLevel, time, setTime}) => {
+const Header: React.FC<HeaderProps> = ({live, setLive, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon, rows, cols, bombs, level,time, setTime}) => {
 
   
   useEffect(() => {
@@ -49,13 +47,13 @@ const Header: React.FC<HeaderProps> = ({live, setLive, cells, setCells, bombCoun
       <NumberDisplay value={bombCounter} />
       <Face 
       live={live} setLive={setLive} 
-      time={time} setTime={setTime} 
-      cells={cells} setCells={setCells} 
+      setTime={setTime} 
+      setCells={setCells} 
       lost={lost} setLost={setLost}
       won={won} setWon={setWon}
-      bombCounter={bombCounter} setBombCounter={setBombCounter}
+      setBombCounter={setBombCounter}
       rows={rows} cols={cols} bombs={bombs}
-      level={level} setLevel={setLevel}
+      level={level}
       />
       <NumberDisplay value={time} />
     </div>
