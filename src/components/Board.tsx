@@ -13,18 +13,16 @@ interface BoardProps {
   setLive: React.Dispatch<React.SetStateAction<boolean>>;
   cells: Cell[][];
   setCells: React.Dispatch<React.SetStateAction<Cell[][]>>;
-  bombCounter: number;
   setBombCounter: React.Dispatch<React.SetStateAction<number>>;
   lost: boolean;
   setLost: React.Dispatch<React.SetStateAction<boolean>>;
-  won: boolean;
   setWon: React.Dispatch<React.SetStateAction<boolean>>;
   rows: number;
   cols: number;
   bombs: number;
 }
 
-const Board: React.FC<BoardProps> = ({live, setLive, cells, setCells, bombCounter, setBombCounter, lost, setLost, won, setWon, rows, cols, bombs}) => {
+const Board: React.FC<BoardProps> = ({live, setLive, cells, setCells, setBombCounter, lost, setLost, setWon, rows, cols, bombs}) => {
 
 const renderCells = (): React.ReactNode => {
 
