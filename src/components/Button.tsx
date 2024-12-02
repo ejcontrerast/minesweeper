@@ -1,6 +1,7 @@
 import React from "react";
 import { CellValue, CellState } from "./utils";
 import minesvg from "../assets/mine.svg";
+import { motion } from "framer-motion";
 
 
 
@@ -20,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({row, col, onContext, onClick, state, val
             if (value === CellValue.Bomb) {
             return (
                 <span role="img" aria-label="bomb" className="flex items-center justify-center w-full h-full">
-                <img src={minesvg} alt="bomb" className="w-6 h-6" />
+                  <img src={minesvg} alt="bomb" className="w-6 h-6" />
                 </span>
             );
             }
@@ -39,10 +40,14 @@ const Button: React.FC<ButtonProps> = ({row, col, onContext, onClick, state, val
     }
 
   return (
-    <div
+    <motion.div
+     /*  initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.1 }} */
+      
       className={`
         cellBtn  
-        ${state === CellState.Visible ? 'cellBtnVisible' : ''}
+        ${state === CellState.Visible ? 'cellBtnVisible pointer-events-none' : ''}
         ${state === CellState.Visible || state === CellState.Flagged ? `value-${value}` : ''}
         value-${value} ${red ? 'red' : ''}
       `}
@@ -50,7 +55,7 @@ const Button: React.FC<ButtonProps> = ({row, col, onContext, onClick, state, val
       onContextMenu={onContext(row, col)}
     >
       {renderContent()}
-    </div>
+    </motion.div>
   );
 };
 

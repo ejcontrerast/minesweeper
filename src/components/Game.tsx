@@ -21,7 +21,6 @@ const Game: React.FC = () => {
   const [won, setWon] = React.useState<boolean>(false);
   const [time, setTime] = React.useState<number>(0);
 
-
   return (
     <div className=" p-4 box-border w-full h-full
     flex flex-col items-center justify-center
@@ -54,7 +53,7 @@ const Game: React.FC = () => {
       state={CellState.Open} value={CellValue.None} 
       setBombCounter={setBombCounter} 
       lost={lost} setLost={setLost}
-      setWon={setWon}
+      won={won} setWon={setWon}
       rows={GAME_CONFIGS[level].ROWS}
       cols={GAME_CONFIGS[level].COLS}
       bombs={GAME_CONFIGS[level].BOMBS}

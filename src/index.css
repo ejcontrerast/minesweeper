@@ -48,6 +48,10 @@
   border-right-color: white;
 }
 
+.cellBtn:hover {
+  background-color: #b4b3b3;
+}
+
 .cellBtnVisible {
   font-size: 21px;
   cursor: pointer;

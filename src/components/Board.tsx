@@ -16,13 +16,14 @@ interface BoardProps {
   setBombCounter: React.Dispatch<React.SetStateAction<number>>;
   lost: boolean;
   setLost: React.Dispatch<React.SetStateAction<boolean>>;
+  won: boolean;
   setWon: React.Dispatch<React.SetStateAction<boolean>>;
   rows: number;
   cols: number;
   bombs: number;
 }
 
-const Board: React.FC<BoardProps> = ({live, setLive, cells, setCells, setBombCounter, lost, setLost, setWon, rows, cols, bombs}) => {
+const Board: React.FC<BoardProps> = ({live, setLive, cells, setCells, setBombCounter, lost, setLost, won, setWon, rows, cols, bombs}) => {
 
 const renderCells = (): React.ReactNode => {
 
@@ -51,7 +52,7 @@ const renderCells = (): React.ReactNode => {
           let isABomb = cells[rowParam][colParam].value === CellValue.Bomb;
           while (isABomb) {
           newCells = generateCells(rows, cols, bombs);
-          console.log("this is a bomb");
+
           if (newCells[rowParam][colParam].value !== CellValue.Bomb) {
             isABomb = false;
             break;
@@ -155,8 +156,9 @@ const renderCells = (): React.ReactNode => {
       className={`g-0 m-0
       board-container w-fit h-fit
       mt-4 border-4 border-r-white border-l-[#7b7b7b] border-b-white border-t-[#7b7b7b]
-      grid
-      ${lost ? 'pointer-events-none opacity-95' : ''} 
+      grid 
+      ${lost ? 'pointer-events-none':''} 
+      ${won ? 'pointer-events-none':'' }
       `}
       style={{
         display: 'grid',
