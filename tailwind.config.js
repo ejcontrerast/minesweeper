@@ -7,6 +7,12 @@ export default {
     extend: {},
   },
   plugins: [
-    require('tailwindcss-mixins'),
+    plugin(function({ addUtilities }) {
+      addUtilities({
+        '.example-class': {
+          display: 'block',
+        },
+      });
+    }),
   ]
 };
