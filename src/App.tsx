@@ -20,6 +20,7 @@ export default App;
 
 
 /* Brainstorm updates:
+- Place Hint button
 - Change Color Scheme
   - Set variables for colors
   - Change the colors in the CSS

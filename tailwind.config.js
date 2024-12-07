@@ -7,12 +7,5 @@ export default {
     extend: {},
   },
   plugins: [
-    plugin(function({ addUtilities }) {
-      addUtilities({
-        '.example-class': {
-          display: 'block',
-        },
-      });
-    }),
   ]
 };
