@@ -70,3 +70,8 @@
   font-weight: 400;
   font-style: normal;
 }
+
+
+.board-container {
+  pointer-events: none;
+}

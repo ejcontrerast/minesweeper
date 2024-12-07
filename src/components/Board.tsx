@@ -154,9 +154,10 @@ const renderCells = (): React.ReactNode => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
       className={`g-0 m-0
-      board-container w-fit h-fit
+      w-fit h-fit focus-outline-none select-none
       mt-4 border-4 border-r-white border-l-[#7b7b7b] border-b-white border-t-[#7b7b7b]
       grid 
+      ${CellState.Open ? 'board-container':''}
       ${lost ? 'pointer-events-none':''} 
       ${won ? 'pointer-events-none':'' }
       `}

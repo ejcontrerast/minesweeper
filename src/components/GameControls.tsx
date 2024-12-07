@@ -27,7 +27,7 @@ const GameControls: React.FC<GameControlsProps> = ({setLive, setCells, setBombCo
   };
 
   return (
-    <div className="flex gap-2 mb-4 items-center justify-around">
+    <div className="flex gap-2 mb-4 items-center justify-around select-none">
       {Object.values(GameLevel).map((levelChoosed) => (
         <button
           key={levelChoosed}
