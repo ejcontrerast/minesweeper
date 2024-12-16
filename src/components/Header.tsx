@@ -46,14 +46,14 @@ const Header: React.FC<HeaderProps> = ({live, setLive, setCells, bombCounter, se
     >
       <NumberDisplay value={bombCounter} />
       <Face 
-      live={live} setLive={setLive} 
-      setTime={setTime} 
-      setCells={setCells} 
-      lost={lost} setLost={setLost}
-      won={won} setWon={setWon}
-      setBombCounter={setBombCounter}
-      rows={rows} cols={cols} bombs={bombs}
-      level={level}
+        live={live} setLive={setLive} 
+        setTime={setTime} 
+        setCells={setCells} 
+        lost={lost} setLost={setLost}
+        won={won} setWon={setWon}
+        setBombCounter={setBombCounter}
+        rows={rows} cols={cols} bombs={bombs}
+        level={level}
       />
       <NumberDisplay value={time} />
     </div>

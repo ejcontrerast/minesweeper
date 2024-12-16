@@ -75,3 +75,38 @@
 .board-container {
   pointer-events: none;
 }
+
+.neon-text {
+  color: #00FFB3; /* Neon Green */
+  font-size: 3rem;
+  text-shadow: 
+    0 0 5px #00FFB3,
+    0 0 10px #00FFB3,
+    0 0 20px #00FFB3,
+    0 0 40px #00FFB3,
+    0 0 80px #00FFB3;
+}
+
+/* Neon SVG Effect */
+.neon-svg {
+  fill: #FF00FF; /* Neon Pink */
+  filter: drop-shadow(0 0 5px #FF00FF) drop-shadow(0 0 15px #FF00FF);
+  width: 100px;
+  height: 100px;
+}
+
+/* Neon Border Effect */
+.neon-box {
+  width: 300px;
+  height: 150px;
+  border: 2px solid #00E6FF; /* Neon Blue */
+  box-shadow: 
+    0 0 5px #00E6FF,
+    0 0 10px #00E6FF,
+    0 0 20px #00E6FF;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
