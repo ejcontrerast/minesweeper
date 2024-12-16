@@ -2,6 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Primary Neon Colors */
+  --color-one: #FF00FF;    /* Neon Pink */
+  --color-two: #00FFB3;    /* Neon Green */
+  --color-three: #00E6FF;  /* Neon Cyan */
+  --color-four: #FFD300;   /* Neon Yellow */
+  --color-five: #FF006E;   /* Neon Magenta-Red */
+  --color-six: #FF00FF;    /* Neon Pink (duplicate for consistency) */
+  --color-seven: #00FFB3;  /* Neon Green (duplicate for consistency) */
+  --color-eight: #00E6FF;  /* Neon Cyan (duplicate for consistency) */
+
+  /* Background and Border Colors */
+  --color-bg: #000;        /* Black Background */
+  --color-bg-gray: #1B1F23; /* Dark Gray for Variations */
+  --color-border: #333;    /* Dark Gray Border */
+
+  /* Text Colors */
+  --color-text: #FFFFFF;   /* White Text for Contrast */
+
+  /* Special Colors */
+  --color-bomb: #FF006E;       /* Magenta-Red for Bomb */
+  --color-flag: #FFD300;       /* Neon Yellow for Flags */
+  --color-explotion: #FF006E;  /* Magenta-Red for Explosions */
+
+  /* Emotions and Game States */
+  --color-smile: #FFD300;   /* Neon Yellow for Smile */
+  --color-oh: #FF006E;      /* Magenta-Red for 'Oh' Expression */
+  --color-lost: #FF006E;    /* Magenta-Red for Lost State */
+  --color-won: #00FFB3;     /* Neon Green for Won State */
+}
+
 .value-1 {
   color: blue;
 }
