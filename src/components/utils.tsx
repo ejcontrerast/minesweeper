@@ -1,3 +1,7 @@
+import Won from './svg/Won';
+import Lost from './svg/Dead';
+import Oh from './svg/Oh';
+import Smile from './svg/Smile';
 
 export enum GameLevel {
   BEGINNER = 'Beginner',
@@ -51,12 +55,13 @@ export type Cell = {
   state: CellState;
   red?: boolean
 };
-export enum Face {
-  Smile = "😀",
-  Oh = "😲",
-  Lost = "😵",
-  Won = "😎"
-}
+export const FaceComponents = {
+  Smile: <Smile className="w-12 h-12 neon-svg neon-smile" />,
+  Oh: <Oh className="w-12 h-12 neon-svg neon-oh" />,
+  Lost: <Lost className="w-12 h-12 neon-svg neon-lost" />,
+  Won: <Won className="w-12 h-12 neon-svg neon-won" />,
+} as const; // `as const` ensures the values are read-only literals
+export type FaceType = keyof typeof FaceComponents;
 
 const grabAllAdjacentCells = (cells: Cell[][], rowParam: number, colParam: number)
 : {

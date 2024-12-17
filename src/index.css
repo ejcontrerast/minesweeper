@@ -5,6 +5,7 @@
 :root {
   --neon-color: #FF00FF; /* Neon Pink for Default */
   --neon-colortext: #FF00FF; /* Neon Pink for Default */
+  --neon-shade: rgb(56, 56, 56);
 }
 
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Face as FaceEnum } from './utils';
+import { FaceComponents, FaceType } from './utils';
 import { generateCells } from './cellsGenerator';
 import { Cell } from './utils';
 import { GameLevel, GAME_CONFIGS } from './utils';
@@ -21,21 +21,21 @@ interface FaceProps {
 }
 
 const Face: React.FC<FaceProps> = ({live, setLive, setTime, setCells, lost, setLost, won, setWon, setBombCounter, rows, cols, bombs, level}) => {
-    const [face, setFace] = React.useState<FaceEnum>(FaceEnum.Smile);
+    const [face, setFace] = React.useState<FaceType>("Smile");
 
     useEffect(() => {
       const handleMousedown = (e: MouseEvent): void => {
         
         const boardElement = document.querySelector('.board-container');
         if (boardElement?.contains(e.target as Node)) {
-          setFace(FaceEnum.Oh);
+          setFace("Oh");
         }
       }
     
       const handleMouseup = (e: MouseEvent): void => {
         const boardElement = document.querySelector('.board-container');
         if (boardElement?.contains(e.target as Node)) {
-          setFace(FaceEnum.Smile);
+          setFace("Smile");
         }
       }
     
@@ -61,17 +61,17 @@ const Face: React.FC<FaceProps> = ({live, setLive, setTime, setCells, lost, setL
 
     useEffect(() => {
         if (lost) {
-          setFace(FaceEnum.Lost);
+          setFace("Lost");
         } else if (live) {
-          setFace(FaceEnum.Smile);
+          setFace("Smile");
         } else {
-          setFace(FaceEnum.Won);
+          setFace("Won");
         }
       }, [lost, live]);
 
     useEffect(() => {
         if (won) {
-          setFace(FaceEnum.Won);
+          setFace("Won");
           setLive(false);
         }
       }, [won]);
@@ -79,13 +79,12 @@ const Face: React.FC<FaceProps> = ({live, setLive, setTime, setCells, lost, setL
 
     return (
         <main className= "">
-            <div className="bg-[#c0c0c0] border-4 text-3xl
-             border-l-white border-t-white border-r-[#7b7b7b] border-b-[#7b7b7b] 
-             active:border-t-[#7b7b7b] active:border-b-white active:border-l-[#7b7b7b] active:border-r-white
-             w-12 h-12 flex items-center justify-center cursor-pointer"
+            <div className="text-3xl mb-5
+             cellBtn active:border-b-neon-color active:border-r-neon-color active:border-t-neon-shade active:border-l-neon-shade
+             !w-16 !h-16 flex items-center justify-center cursor-pointer"
              onClick={handleFaceClick}
              >
-                <span role="img" aria-label="Face">{face}</span>
+                <span role="img" aria-label="Face">{FaceComponents[face]}</span>
             </div>
         </main>
     );
