@@ -1,8 +1,9 @@
 import React from "react";
 import { CellValue, CellState } from "./utils";
-import minesvg from "../assets/mine.svg";
 import { motion } from "framer-motion";
-
+import Flag from "./svg/Flag";
+import Mine from "./svg/Mine";
+import Explode from "./svg/BombExplosion";
 
 
 interface ButtonProps {
@@ -21,7 +22,8 @@ const Button: React.FC<ButtonProps> = ({row, col, onContext, onClick, state, val
             if (value === CellValue.Bomb) {
             return (
                 <span role="img" aria-label="bomb" className="flex items-center justify-center w-full h-full">
-                  <img src={minesvg} alt="bomb" className="w-6 h-6" />
+                    <Mine className={`w-5 h-5 neon-svg neon-bomb ${red ? 'hidden' : ''}`} />
+                    <Explode className={`w-5 h-5 neon-svg neon-explosion ${red ? '' : 'hidden'}`} />
                 </span>
             );
             }
@@ -32,7 +34,7 @@ const Button: React.FC<ButtonProps> = ({row, col, onContext, onClick, state, val
         } else if (state === CellState.Flagged) {
             return (
                 <span role="img" aria-label="flag" className="flex items-center justify-center w-full h-full">
-                    🚩
+                    <Flag className="w-5 h-5 neon-svg neon-flag " />
                 </span> 
             );
         }

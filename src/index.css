@@ -30,7 +30,7 @@
 }
 
 .neon-flag {
-  --neon-color: #FFD700; /* Bright Gold for Flags */
+  --neon-color: #FF4500; /* Bright Gold for Flags */
 }
 
 .neon-explosion {
@@ -90,44 +90,65 @@
 }
 
 .cellBtn {
-
+  box-shadow: inset 1px 1px 1px var(--neon-color),
+    inset 1px 1px 1px var(--neon-color),
+    inset 1px 1px 3px var(--neon-color);
+  transition: all 0.2s ease-in-out;
   background: #000;
   border-radius: 10px;
-
   cursor: pointer;
   text-align: center;
   align-items: center;
   height: 32px;
   width: 32px;
-  border-width: 4px;
+  border-width: 2px;
   border-left-color: var(--neon-color);
-  border-right-color: black;
+  border-right-color: rgb(56, 56, 56);
   border-top-color: var(--neon-color);
-  border-bottom-color: black;
+  border-bottom-color: rgb(56, 56, 56);
 }
 
 .cellBtn:active {
-  border-top-color: #7b7b7b;
+  border-top-color: rgb(56, 56, 56);
   border-bottom-color: white;
-  border-left-color: #7b7b7b;
+  border-left-color: rgb(56, 56, 56);
   border-right-color: white;
 }
 
 .cellBtn:hover {
-  background-color: #b4b3b3;
+  background-color: rgb(56, 56, 56);
 }
 
 .cellBtnVisible {
-  border: none;
+  filter: none;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 21px;
   cursor: pointer;
   font-weight: 700;
   background-color: #000;
-  box-shadow: none;
+  border-radius: 10px;
+  border-width: 4px;
+  border-top-color: rgb(56, 56, 56);
+  border-bottom-color: rgb(56, 56, 56);
+  border-left-color: rgb(56, 56, 56);
+  border-right-color: rgb(56, 56, 56);
+}
+
+@keyframes slideLeftRight {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .red {
-  background-color: red;
+  background-color: rgb(255, 230, 0);
+  animation: slideLeftRight 4s linear infinite;
 }
 
 
@@ -154,8 +175,11 @@
 
 /* Neon SVG Effect */
 .neon-svg {
+  stroke: var(--neon-color);
   fill: var(--neon-color);
-  filter: drop-shadow(0 0 5px var(--neon-color)) drop-shadow(0 0 15px var(--neon-color));
+  filter: drop-shadow(0 0 5px var(--neon-color)) 
+  drop-shadow(0 0 15px var(--neon-color))
+  ;
 }
 
 /* Neon Border Effect */
