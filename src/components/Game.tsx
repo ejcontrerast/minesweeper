@@ -22,42 +22,46 @@ const Game: React.FC = () => {
   const [time, setTime] = React.useState<number>(0);
 
   return (
-    <div className=" p-4 box-border w-full h-full
-    flex flex-col items-center justify-center
-    bg-[#c2c2c2] border-4 border-t-white border-b-[#999] border-l-white border-r-[#999]">
-      <div>
+    <div className=" "
+    >
       <GameControls
-      setLive={setLive} 
-      setCells={setCells} 
-      setBombCounter={setBombCounter} 
-      setLost={setLost}
-      setWon={setWon}
-      level={level} setLevel={setLevel}
-      setTime={setTime}
+        setLive={setLive} 
+        setCells={setCells} 
+        setBombCounter={setBombCounter} 
+        setLost={setLost}
+        setWon={setWon}
+        level={level} setLevel={setLevel}
+        setTime={setTime}
       />
       <Header 
-      live={live} setLive={setLive} 
-      setCells={setCells} 
-      bombCounter={bombCounter} setBombCounter={setBombCounter} 
-      lost={lost} setLost={setLost}
-      won={won} setWon={setWon}
-      rows={GAME_CONFIGS[level].ROWS}
-      cols={GAME_CONFIGS[level].COLS}
-      bombs={GAME_CONFIGS[level].BOMBS}
-      level={level}
-      time={time} setTime={setTime}
+        live={live} setLive={setLive} 
+        setCells={setCells} 
+        bombCounter={bombCounter} setBombCounter={setBombCounter} 
+        lost={lost} setLost={setLost}
+        won={won} setWon={setWon}
+        rows={GAME_CONFIGS[level].ROWS}
+        cols={GAME_CONFIGS[level].COLS}
+        bombs={GAME_CONFIGS[level].BOMBS}
+        level={level}
+        time={time} setTime={setTime}
       />
-      <Board 
-      live={live} setLive={setLive} 
-      cells={cells} setCells={setCells} 
-      state={CellState.Open} value={CellValue.None} 
-      setBombCounter={setBombCounter} 
-      lost={lost} setLost={setLost}
-      won={won} setWon={setWon}
-      rows={GAME_CONFIGS[level].ROWS}
-      cols={GAME_CONFIGS[level].COLS}
-      bombs={GAME_CONFIGS[level].BOMBS}
-      />
+      <div className="
+      p-4 box-border w-full h-full
+      flex flex-col items-center justify-center
+      neon-box
+      "
+      > 
+        <Board 
+          live={live} setLive={setLive} 
+          cells={cells} setCells={setCells} 
+          state={CellState.Open} value={CellValue.None} 
+          setBombCounter={setBombCounter} 
+          lost={lost} setLost={setLost}
+          won={won} setWon={setWon}
+          rows={GAME_CONFIGS[level].ROWS}
+          cols={GAME_CONFIGS[level].COLS}
+          bombs={GAME_CONFIGS[level].BOMBS}
+        />
       </div>
     </div>
   );

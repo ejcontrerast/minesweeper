@@ -46,9 +46,9 @@ const Button: React.FC<ButtonProps> = ({row, col, onContext, onClick, state, val
       transition={{ duration: 0.1 }} */
       
       className={`
-        cellBtn  
+        cellBtn neon-cell
         ${state === CellState.Visible ? 'cellBtnVisible pointer-events-none' : ''}
-        ${state === CellState.Visible || state === CellState.Flagged ? `value-${value}` : ''}
+        ${state === CellState.Visible || state === CellState.Flagged ? `value-${value} neon-text` : ''}
         value-${value} ${red ? 'red' : ''}
       `}
       onClick={onClick(row, col)}

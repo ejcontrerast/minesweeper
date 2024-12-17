@@ -155,7 +155,7 @@ const renderCells = (): React.ReactNode => {
       transition={{ duration: 0.2 }}
       className={`g-0 m-0
       w-fit h-fit focus-outline-none select-none
-      mt-4 border-4 border-r-white border-l-[#7b7b7b] border-b-white border-t-[#7b7b7b]
+      neon-box neon-board
       grid 
       ${CellState.Open ? 'board-container':''}
       ${lost ? 'pointer-events-none':''} 

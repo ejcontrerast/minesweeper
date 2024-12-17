@@ -3,73 +3,107 @@
 @tailwind utilities;
 
 :root {
-  /* Primary Neon Colors */
-  --color-one: #FF00FF;    /* Neon Pink */
-  --color-two: #00FFB3;    /* Neon Green */
-  --color-three: #00E6FF;  /* Neon Cyan */
-  --color-four: #FFD300;   /* Neon Yellow */
-  --color-five: #FF006E;   /* Neon Magenta-Red */
-  --color-six: #FF00FF;    /* Neon Pink (duplicate for consistency) */
-  --color-seven: #00FFB3;  /* Neon Green (duplicate for consistency) */
-  --color-eight: #00E6FF;  /* Neon Cyan (duplicate for consistency) */
-
-  /* Background and Border Colors */
-  --color-bg: #000;        /* Black Background */
-  --color-bg-gray: #1B1F23; /* Dark Gray for Variations */
-  --color-border: #333;    /* Dark Gray Border */
-
-  /* Text Colors */
-  --color-text: #FFFFFF;   /* White Text for Contrast */
-
-  /* Special Colors */
-  --color-bomb: #FF006E;       /* Magenta-Red for Bomb */
-  --color-flag: #FFD300;       /* Neon Yellow for Flags */
-  --color-explotion: #FF006E;  /* Magenta-Red for Explosions */
-
-  /* Emotions and Game States */
-  --color-smile: #FFD300;   /* Neon Yellow for Smile */
-  --color-oh: #FF006E;      /* Magenta-Red for 'Oh' Expression */
-  --color-lost: #FF006E;    /* Magenta-Red for Lost State */
-  --color-won: #00FFB3;     /* Neon Green for Won State */
+  --neon-color: #FF00FF; /* Neon Pink for Default */
+  --neon-colortext: #FF00FF; /* Neon Pink for Default */
 }
+
+
+/* Custom CSS */
+.neon-cell {
+  --neon-color: #FFFFFF; /* Black Background */
+}
+
+.neon-board {
+  --neon-color: #6f00ff; /* Dark Gray for Variations */
+}
+
+.neon-border {
+  --neon-color: #FF00FF; /* Dark Gray Border */
+}
+
+.neon-text {
+  --neon-colortext: #FFFFFF; /* White Text for Contrast */
+}
+
+.neon-bomb {
+  --neon-color: #FF4500; /* Neon Orange-Red for Bomb */
+}
+
+.neon-flag {
+  --neon-color: #FFD700; /* Bright Gold for Flags */
+}
+
+.neon-explosion {
+  --neon-color: #FF0000; /* Bright Red for Explosions */
+}
+
+
+
+.neon-smile {
+  --neon-color: #FFD300; /* Neon Yellow for Smile */
+}
+
+.neon-oh {
+  --neon-color: #FF6347; /* Neon Coral for 'Oh' Expression */
+}
+
+.neon-lost {
+  --neon-color: #FF0000; /* Bright Red for Lost State */
+}
+
+.neon-won {
+  --neon-color: #32CD32; /* Neon Lime Green for Won State */
+}
+
+
 
 .value-1 {
-  color: blue;
+  --neon-colortext: #FF00FF; /* Neon Pink for 1 */
 }
+
 .value-2 {
-  color: green;
+  --neon-colortext: #00FFB3; /* Neon Green for 2 */
 }
+
 .value-3 {
-  color: red;
+  --neon-colortext: #00E6FF; /* Neon Cyan for 3 */
 }
+
 .value-4 {
-  color: purple;
+  --neon-colortext: #FFD300; /* Neon Yellow for 4 */
 }
+
 .value-5 {
-  color: maroon;
+  --neon-colortext: #FF4500; /* Neon Orange-Red for 5 */
 }
+
 .value-6 {
-  color: turquoise;
+  --neon-colortext: #8A2BE2; /* Neon Purple for 6 */
 }
+
 .value-7 {
-  color: black;
+  --neon-colortext: #FF6347; /* Neon Coral for 7 */
 }
+
 .value-8 {
-  color: gray;
+  --neon-colortext: #7CFC00; /* Neon Lime Green for 8 */
 }
 
 .cellBtn {
+
+  background: #000;
+  border-radius: 10px;
+
   cursor: pointer;
   text-align: center;
   align-items: center;
   height: 32px;
   width: 32px;
   border-width: 4px;
-  background-color: #c0c0c0;
-  border-left-color: white;
-  border-right-color: #7b7b7b;
-  border-top-color: white;
-  border-bottom-color: #7b7b7b;
+  border-left-color: var(--neon-color);
+  border-right-color: black;
+  border-top-color: var(--neon-color);
+  border-bottom-color: black;
 }
 
 .cellBtn:active {
@@ -84,11 +118,12 @@
 }
 
 .cellBtnVisible {
+  border: none;
   font-size: 21px;
   cursor: pointer;
   font-weight: 700;
-  border: 1px solid #7b7b7b;
-  background-color: #c0c0c0;
+  background-color: #000;
+  box-shadow: none;
 }
 
 .red {
@@ -108,36 +143,28 @@
 }
 
 .neon-text {
-  color: #00FFB3; /* Neon Green */
-  font-size: 3rem;
+  color: var(--neon-colortext);
   text-shadow: 
-    0 0 5px #00FFB3,
-    0 0 10px #00FFB3,
-    0 0 20px #00FFB3,
-    0 0 40px #00FFB3,
-    0 0 80px #00FFB3;
+    0 0 5px var(--neon-colortext),
+    0 0 10px var(--neon-colortext),
+    0 0 20px var(--neon-colortext),
+    0 0 40px var(--neon-colortext),
+    0 0 80px var(--neon-colortext);
 }
 
 /* Neon SVG Effect */
 .neon-svg {
-  fill: #FF00FF; /* Neon Pink */
-  filter: drop-shadow(0 0 5px #FF00FF) drop-shadow(0 0 15px #FF00FF);
-  width: 100px;
-  height: 100px;
+  fill: var(--neon-color);
+  filter: drop-shadow(0 0 5px var(--neon-color)) drop-shadow(0 0 15px var(--neon-color));
 }
 
 /* Neon Border Effect */
 .neon-box {
-  width: 300px;
-  height: 150px;
-  border: 2px solid #00E6FF; /* Neon Blue */
+  border: 2px solid var(--neon-color);
   box-shadow: 
-    0 0 5px #00E6FF,
-    0 0 10px #00E6FF,
-    0 0 20px #00E6FF;
+    0 0 5px var(--neon-color),
+    0 0 10px var(--neon-color),
+    0 0 20px var(--neon-color);
   background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+  border-radius: 10px;
 }
