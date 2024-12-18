@@ -4,10 +4,19 @@
 
 :root {
   --neon-color: #FF00FF; /* Neon Pink for Default */
-  --neon-colortext: #FF00FF; /* Neon Pink for Default */
+  --neon-colortext: #00ffea; /* Neon Pink for Default */
   --neon-shade: rgb(56, 56, 56);
 }
 
+.tilt-neon-01 {
+  font-family: "Tilt Neon", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "XROT" 10,
+    "YROT" 5;
+}
 
 /* Custom CSS */
 .neon-cell {
@@ -23,8 +32,13 @@
 }
 
 .neon-text {
-  --neon-colortext: #FFFFFF; /* White Text for Contrast */
+  --neon-colortext: #00ffea; /* White Text for Contrast */
 }
+
+.neon-titles {
+  --neon-colortext: #008cff; /* White Text for Contrast */
+}
+
 
 .neon-bomb {
   --neon-color: #FF4500; /* Neon Orange-Red for Bomb */
@@ -41,11 +55,11 @@
 
 
 .neon-smile {
-  --neon-color: #FFD300; /* Neon Yellow for Smile */
+  --neon-color: #00d7e6; /* Neon Yellow for Smile */
 }
 
 .neon-oh {
-  --neon-color: #FF6347; /* Neon Coral for 'Oh' Expression */
+  --neon-color: #ffce47; /* Neon Coral for 'Oh' Expression */
 }
 
 .neon-lost {
@@ -102,7 +116,7 @@
   align-items: center;
   height: 32px;
   width: 32px;
-  border-width: 2px;
+  border-width: 3px;
   border-left-color: var(--neon-color);
   border-right-color: rgb(56, 56, 56);
   border-top-color: var(--neon-color);
@@ -110,14 +124,16 @@
 }
 
 .cellBtn:active {
+  border-width: 3px;
   border-top-color: rgb(56, 56, 56);
-  border-bottom-color: white;
+  border-bottom-color: var(--neon-color);
   border-left-color: rgb(56, 56, 56);
-  border-right-color: white;
+  border-right-color: var(--neon-color);
+  box-shadow: none;
 }
 
 .cellBtn:hover {
-  background-color: rgb(56, 56, 56);
+  background-color: rgb(46, 46, 46);
 }
 
 .cellBtnVisible {
@@ -131,7 +147,7 @@
   font-weight: 700;
   background-color: #000;
   border-radius: 10px;
-  border-width: 4px;
+  border-width: 3px;
   border-top-color: rgb(56, 56, 56);
   border-bottom-color: rgb(56, 56, 56);
   border-left-color: rgb(56, 56, 56);
@@ -159,9 +175,14 @@
   font-style: normal;
 }
 
-
-.board-container {
-  pointer-events: none;
+.neon-titles {
+  color: var(--neon-colortext);
+  text-shadow: 
+    0 0 5px var(--neon-colortext),
+    0 0 10px var(--neon-colortext),
+    0 0 20px var(--neon-colortext),
+    0 0 40px var(--neon-colortext),
+    0 0 80px var(--neon-colortext);
 }
 
 .neon-text {

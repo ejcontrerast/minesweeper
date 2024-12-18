@@ -27,19 +27,20 @@ const GameControls: React.FC<GameControlsProps> = ({setLive, setCells, setBombCo
   };
 
   return (
-    <div className="flex gap-2 mb-4 items-center justify-around select-none">
+    <div className="flex gap-2 mb-4 items-center justify-around select-none
+      tilt-neon-01 neon-text text-neon-text text-2xl
+    ">
       {Object.values(GameLevel).map((levelChoosed) => (
         <button
           key={levelChoosed}
           className={`px-1 py-1.5 text-2xl
           bg-transparent
           text-gray-700 font-medium hover:from-gray-300 hover:to-gray-400 
-          active:translate-y-px
+          active:translate-y-px tilt-neon-01 neon-titles text-neon-titles
           ${level === levelChoosed ? 'text-red-500' : ''}
           ${(levelChoosed === 'Intermediate' && window.innerWidth < 600) || 
             (levelChoosed === 'Expert' && window.innerWidth < 1020) 
             ? 'opacity-50 cursor-not-allowed' : ''}`}
-          style={{ fontFamily: 'VT323, monospace' }}
           onClick={() => {
             if ((levelChoosed === 'Intermediate' && window.innerWidth >= 600) ||
           (levelChoosed === 'Expert' && window.innerWidth >= 1020) ||

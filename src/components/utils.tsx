@@ -60,7 +60,7 @@ export const FaceComponents = {
   Oh: <Oh className="w-12 h-12 neon-svg neon-oh" />,
   Lost: <Lost className="w-12 h-12 neon-svg neon-lost" />,
   Won: <Won className="w-12 h-12 neon-svg neon-won" />,
-} as const; // `as const` ensures the values are read-only literals
+} as const; 
 export type FaceType = keyof typeof FaceComponents;
 
 const grabAllAdjacentCells = (cells: Cell[][], rowParam: number, colParam: number)

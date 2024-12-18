@@ -23,22 +23,21 @@ interface FaceProps {
 const Face: React.FC<FaceProps> = ({live, setLive, setTime, setCells, lost, setLost, won, setWon, setBombCounter, rows, cols, bombs, level}) => {
     const [face, setFace] = React.useState<FaceType>("Smile");
 
+    const handleMousedown = (e: MouseEvent): void => {
+      const boardElement = document.querySelector('.board-container');
+      if (boardElement?.contains(e.target as Node)) {
+        setFace("Oh");
+      }
+    }
+
+    const handleMouseup = (e: MouseEvent): void => {
+      const boardElement = document.querySelector('.board-container');
+      if (boardElement?.contains(e.target as Node)) {
+        setFace("Smile");
+      }
+    }
+
     useEffect(() => {
-      const handleMousedown = (e: MouseEvent): void => {
-        
-        const boardElement = document.querySelector('.board-container');
-        if (boardElement?.contains(e.target as Node)) {
-          setFace("Oh");
-        }
-      }
-    
-      const handleMouseup = (e: MouseEvent): void => {
-        const boardElement = document.querySelector('.board-container');
-        if (boardElement?.contains(e.target as Node)) {
-          setFace("Smile");
-        }
-      }
-    
       window.addEventListener('mousedown', handleMousedown);
       window.addEventListener('mouseup', handleMouseup);
       
@@ -62,10 +61,10 @@ const Face: React.FC<FaceProps> = ({live, setLive, setTime, setCells, lost, setL
     useEffect(() => {
         if (lost) {
           setFace("Lost");
-        } else if (live) {
-          setFace("Smile");
-        } else {
+        } else if (live && won) {
           setFace("Won");
+        } else {
+          setFace("Smile");
         }
       }, [lost, live]);
 
@@ -73,15 +72,20 @@ const Face: React.FC<FaceProps> = ({live, setLive, setTime, setCells, lost, setL
         if (won) {
           setFace("Won");
           setLive(false);
+        } else {
+          setFace("Smile");
         }
       }, [won]);
 
 
     return (
         <main className= "">
-            <div className="text-3xl mb-5
+            <div className="
+             text-3xl my-5
              cellBtn active:border-b-neon-color active:border-r-neon-color active:border-t-neon-shade active:border-l-neon-shade
-             !w-16 !h-16 flex items-center justify-center cursor-pointer"
+             !w-16 !h-16 flex items-center justify-center cursor-pointer
+             !active:border-b-neon-color !active:border-r-neon-color !active:border-t-neon-shade !active:border-l-neon-shade
+             "
              onClick={handleFaceClick}
              >
                 <span role="img" aria-label="Face">{FaceComponents[face]}</span>

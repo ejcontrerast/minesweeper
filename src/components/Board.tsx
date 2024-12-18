@@ -153,11 +153,13 @@ const renderCells = (): React.ReactNode => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
-      className={`g-0 m-0
+      className={`
+      
+      g-0 m-0
       w-fit h-fit focus-outline-none select-none
       neon-box neon-board
       grid 
-      ${CellState.Open ? 'board-container':''}
+      ${live ? 'board-container':''}
       ${lost ? 'pointer-events-none':''} 
       ${won ? 'pointer-events-none':'' }
       `}
