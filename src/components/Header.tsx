@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({live, setLive, setCells, bombCounter, se
     <div className= 
     "py-2 px-3 flex items-center justify-between select-none"
     > 
-      <NumberDisplay value={bombCounter} />
+      <NumberDisplay value={bombCounter} className='neon-flags' />
       <Face 
         live={live} setLive={setLive} 
         setTime={setTime} 
@@ -55,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({live, setLive, setCells, bombCounter, se
         rows={rows} cols={cols} bombs={bombs}
         level={level}
       />
-      <NumberDisplay value={time} />
+      <NumberDisplay value={time} className='neon-timer' />
     </div>
   );
 };

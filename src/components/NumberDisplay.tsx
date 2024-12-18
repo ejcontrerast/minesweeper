@@ -1,17 +1,18 @@
 import React from "react"
 
 interface NumberDisplayProps {
-    value: number
+    value: number,
+    className: string
 }
 
-const NumberDisplay: React.FC<NumberDisplayProps> = ({value}) => {
+const NumberDisplay: React.FC<NumberDisplayProps> = ({value, className}) => {
   return (
     <div className="flex justify-center items-center ">
-      <div className="
+      <div className={`${className}
       flex justify-center items-center
-      tilt-neon-01 neon-text text-neon-text
+      tilt-neon-01 neon-text
       w-20 text-6xl font-thin
-      text-center text-[#ff0701] bg-black m-1">
+      text-center m-1`}>
         {value < 0 ? `-${Math.abs(value).toString().padStart(2,"0")}` 
         : value.toString().padStart(3,"0")}
       </div>

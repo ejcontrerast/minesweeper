@@ -36,11 +36,11 @@ const GameControls: React.FC<GameControlsProps> = ({setLive, setCells, setBombCo
           className={`px-1 py-1.5 text-2xl
           bg-transparent
           text-gray-700 font-medium hover:from-gray-300 hover:to-gray-400 
-          active:translate-y-px tilt-neon-01 neon-titles text-neon-titles
-          ${level === levelChoosed ? 'text-red-500' : ''}
+          active:translate-y-px tilt-neon-01 neon-titles 
+          ${level === levelChoosed ? 'neon-levelChoosed opacity-[100%] ' : 'neon-levels opacity-50'}
           ${(levelChoosed === 'Intermediate' && window.innerWidth < 600) || 
             (levelChoosed === 'Expert' && window.innerWidth < 1020) 
-            ? 'opacity-50 cursor-not-allowed' : ''}`}
+            ? ' neon-nonavaliablelevel cursor-not-allowed' : ''}`}
           onClick={() => {
             if ((levelChoosed === 'Intermediate' && window.innerWidth >= 600) ||
           (levelChoosed === 'Expert' && window.innerWidth >= 1020) ||

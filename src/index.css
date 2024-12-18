@@ -32,13 +32,28 @@
 }
 
 .neon-text {
-  --neon-colortext: #00ffea; /* White Text for Contrast */
+  --neon-colortext: #ff7b00; /* White Text for Contrast */
 }
 
-.neon-titles {
+.neon-flags {
+  --neon-colortext: #c76203; /* White Text for Contrast */
+}
+
+.neon-timer {
+  --neon-colortext: #129900; /* White Text for Contrast */
+}
+
+.neon-levels {
   --neon-colortext: #008cff; /* White Text for Contrast */
 }
 
+.neon-levelChoosed {
+  --neon-colortext: #c00202; /* White Text for Contrast */
+}
+
+.neon-nonavaliablelevel {
+  --neon-colortext: #6b6d6d;/* White Text for Contrast */
+}
 
 .neon-bomb {
   --neon-color: #FF4500; /* Neon Orange-Red for Bomb */
